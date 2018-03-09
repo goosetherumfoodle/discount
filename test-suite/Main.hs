@@ -1,16 +1,14 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import           Data.Text.Prettyprint.Doc (pretty)
+import           Discount.Cart             (getDisplayItems, getTotalPrice,
+                                            processDiscountRequest,
+                                            processLineItemsRequest,
+                                            processOrder, processOrderRequest')
+import           Discount.Data
+import           Discount.UserInput        (processArgs')
 import qualified Test.Tasty
-import Test.Tasty.Hspec
-import Discount.UserInput (processArgs')
-import Discount.Cart (getTotalPrice
-                     , processOrder
-                     , processOrderRequest'
-                     , processDiscountRequest
-                     , processLineItemsRequest
-                     , getDisplayItems)
-import Discount.Data
-import Data.Text.Prettyprint.Doc (pretty)
+import           Test.Tasty.Hspec
 
 main :: IO ()
 main = do
