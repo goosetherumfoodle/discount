@@ -25,6 +25,9 @@ library:
   - base
   - yaml
   - bytestring
+  - Decimal
+  - prettyprinter
+  - text
   source-dirs: library
 
 executables:
@@ -34,6 +37,7 @@ executables:
     dependencies:
     - base
     - discounted
+    - prettyprinter
     ghc-options:
     - -rtsopts
     - -threaded
@@ -61,6 +65,7 @@ tests:
     - discounted
     - tasty
     - tasty-hspec
+    - prettyprinter
     ghc-options:
     - -rtsopts
     - -threaded

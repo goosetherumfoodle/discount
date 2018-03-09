@@ -1,7 +1,13 @@
--- It is generally a good idea to keep all your business logic in your library
--- and only use it in the executable. Doing so allows others to use what you
--- wrote in their libraries.
-import qualified Example
+import           Data.Text.Prettyprint.Doc (pretty)
+import           Database                  (discountLibrary, productLibrary)
+import           Discount.Cart             (processOrder, processOrderRequest)
+import           Discount.UserInput        (processArgs, processCommand)
+import           System.Environment        (getArgs)
 
 main :: IO ()
-main = Example.main
+main = do args <- getArgs
+          cmd  <- processArgs args
+          let orderRequest = processCommand cmd
+          order <- processOrderRequest productLibrary discountLibrary $ orderRequest
+          let displayOrder = processOrder order
+          putStr . show . pretty $ displayOrder
