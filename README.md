@@ -26,7 +26,8 @@ example (5 copies of the product 2, and 3 copies of the product 1):
 ./discounted --discount WELCOME 2 5 1 3
 ```
 
-# Run the test suite.
+* Arguments are generally assumed to be valid. We don't do much input validation.
+# Run the tests
 ```
 stack test
 ```
