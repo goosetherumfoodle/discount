@@ -12,17 +12,16 @@ stack install --local-bin-path .
 ./discounted <product-id> <product-quantity>
 ```
 ## Arguments
-* Product ids precede the quantity they apply to.
+* Arguments are pairs of product ids and quantities.
 ```
 ./discounted <id> <quantity> <id> <quantity> ...
 ```
-
-* So to calculate 5 copies of the product 2, and 3 copies of the product 1, use the following command:
+example (5 copies of the product 2, and 3 copies of the product 1):
 ```
 ./discounted 2 5 1 3
 ```
 
-* Discounts are applied by adding the flag `--discount` (or `-d)
+* Discounts are applied by adding the flag `--discount` (or `-d`)
 ```
 ./discounted --discount WELCOME 2 5 1 3
 ```
