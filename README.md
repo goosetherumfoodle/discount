@@ -21,7 +21,7 @@ example (5 copies of the product 2, and 3 copies of the product 1):
 ./discounted 2 5 1 3
 ```
 
-* Discounts are applied by adding the flag `--discount` (or `-d`)
+* A discounts can be applied by adding the flag `--discount` (or `-d`)
 ```
 ./discounted --discount WELCOME 2 5 1 3
 ```
