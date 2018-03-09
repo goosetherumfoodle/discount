@@ -15,16 +15,16 @@ type ArgProblem = String
 newtype DiscountCode = DiscountCode Text  deriving (Show, Eq)
 newtype ProductId = ProductId Int deriving (Show, Eq)
 newtype ProductQuantity = ProductQuantity Integer deriving (Show, Eq)
-newtype PriceCents a = PriceCents {runPriceCents :: a} deriving (Show, Eq, Num, Functor)
+newtype PriceCents a = PriceCents a deriving (Show, Eq, Num, Functor)
 newtype TotalPriceCents a = Total (PriceCents a) deriving (Show, Eq, Num)
 newtype OriginalPriceCents a = Original (PriceCents a) deriving (Show, Eq)
 newtype ProductName = ProductName Text deriving (Show, Eq)
-newtype DiscountPercentage = DiscountPercentage {runDiscPer :: Integer} deriving (Show, Eq)
+newtype DiscountPercentage = DiscountPercentage Integer deriving (Show, Eq)
 
 data Order = Order [LineItem] (Maybe Discount) deriving (Show, Eq)
 data LineItem = LineItem Product ProductQuantity deriving (Show, Eq)
 data Product = Product ProductName (PriceCents Integer) ProductId deriving (Show, Eq)
-data Discount = DiscountAll { discCode :: DiscountCode, discPer :: DiscountPercentage }
+data Discount = DiscountAll DiscountCode DiscountPercentage
               | DiscountItems DiscountCode DiscountPercentage [ProductId] deriving (Show, Eq)
 data RequestOrder = RequestOrder [RequestLineItem] (Maybe DiscountCode)
 data RequestLineItem = RequestLineItem ProductId ProductQuantity
