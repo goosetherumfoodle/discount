@@ -8,6 +8,6 @@ main :: IO ()
 main = do args <- getArgs
           cmd  <- processArgs args
           let orderRequest = processCommand cmd
-          order <- processOrderRequest productLibrary discountLibrary $ orderRequest
+          order <- processOrderRequest productLibrary discountLibrary orderRequest
           let displayOrder = processOrder order
           putStr . show . pretty $ displayOrder

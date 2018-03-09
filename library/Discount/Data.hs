@@ -48,7 +48,7 @@ instance (Integral a, Show a) => Pretty (TotalPriceCents a) where
   pretty (Total a) = prettyTxt "Total" <+> pretty a
 
 instance (Integral a, Show a) => Pretty (PriceCents a) where
-  pretty (PriceCents a) = pretty ("$" :: String) <> (pretty $ show $ Decimal 2 a)
+  pretty (PriceCents a) = pretty ("$" :: String) <> pretty (show $ Decimal 2 a)
 
 instance Pretty ProductName where
   pretty (ProductName name) = pretty '"' <> pretty name <> pretty '"'
@@ -65,10 +65,10 @@ instance Pretty DisplayLineItem where
                      | otherwise = prettyTxt "copy"
 
 instance Pretty DisplayOrder where
-  pretty (DisplayOrder total items) = vsep $ ["Your cart:"
-                                              , ""
-                                              , vsep $ fmap pretty items
-                                              , "--"
-                                              , pretty total
-                                              , ""
-                                              ]
+  pretty (DisplayOrder total items) = vsep ["Your cart:"
+                                           , ""
+                                           , vsep $ fmap pretty items
+                                           , "--"
+                                           , pretty total
+                                           , ""
+                                           ]

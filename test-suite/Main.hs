@@ -36,7 +36,7 @@ spec = parallel $ do
               , DiscountItems (DiscountCode "second") (DiscountPercentage 20) [ProductId 1]
               ]
             requestCode = DiscountCode "badCode"
-            expected = Left $ "Unable to find a discount with the requested code: badCode"
+            expected = Left "Unable to find a discount with the requested code: badCode"
 
         processDiscountRequest discounts requestCode `shouldBe` expected
 
@@ -52,7 +52,7 @@ spec = parallel $ do
               RequestLineItem (ProductId 1) (ProductQuantity 1)
               , RequestLineItem (ProductId 2) (ProductQuantity 2)
               ]
-            expected = Right $ [
+            expected = Right [
               LineItem (Product (ProductName "cat") (PriceCents 2000) (ProductId 1)) (ProductQuantity 1)
               , LineItem (Product (ProductName "dog") (PriceCents 2500) (ProductId 2)) (ProductQuantity 2)
               ]
@@ -69,7 +69,7 @@ spec = parallel $ do
               RequestLineItem (ProductId 1) (ProductQuantity 1)
               , RequestLineItem (ProductId 5) (ProductQuantity 2)
               ]
-            expected = Left $ "Unable to find a product with the requested id: 5"
+            expected = Left "Unable to find a product with the requested id: 5"
 
         processLineItemsRequest products requestItems `shouldBe` expected
 
@@ -102,7 +102,7 @@ spec = parallel $ do
             , LineItem (Product (ProductName "dog") (PriceCents 2500) (ProductId 2)) (ProductQuantity 2)
             ]
           discount = DiscountItems (DiscountCode "") (DiscountPercentage 20) [ProductId 1]
-          originalPrice = Just $ Original $ PriceCents $ 4000
+          originalPrice = Just . Original $ PriceCents 4000
           displayedLineItems = [
               DisplayLineItem (PriceCents 3200) originalPrice (ProductQuantity 2) (ProductName "cat")
             , DisplayLineItem (PriceCents 5000) Nothing (ProductQuantity 2) (ProductName "dog")
@@ -168,7 +168,7 @@ spec = parallel $ do
 
   describe "prettyprinting display order" $ do
     it "should be in correct format" $ do
-      let originalPrice = Just $ Original $ PriceCents $ 4000
+      let originalPrice = Just . Original $ PriceCents 4000
           displayedLineItems = [
               DisplayLineItem (PriceCents 3200) originalPrice (ProductQuantity 2) (ProductName "cat")
             , DisplayLineItem (PriceCents 5000) Nothing (ProductQuantity 2) (ProductName "dog")
